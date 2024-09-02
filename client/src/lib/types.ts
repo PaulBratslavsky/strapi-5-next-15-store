@@ -1,4 +1,7 @@
-type ComponentType = "blocks.slider" | "blocks.categories-grid";
+type ComponentType =
+  | "blocks.slider"
+  | "blocks.categories-grid"
+  | "blocks.products-grid";
 
 interface Base<T extends ComponentType, D extends {} = {}> {
   __component: T;
@@ -21,7 +24,7 @@ export interface StrapiImage {
   name: string;
 }
 
-export type Block = SliderProps | CategoriesGridProps;
+export type Block = SliderProps | CategoriesGridProps | ProductsGridProps;
 
 export interface SliderProps extends Base<"blocks.slider"> {
   title: string;
@@ -31,16 +34,38 @@ export interface SliderProps extends Base<"blocks.slider"> {
     title: string;
     description: string;
     image: StrapiImage;
-  }[]
+  }[];
+}
+
+interface CategoryProps {
+  id: string;
+  title: string;
+  description: string;
+  image: StrapiImage;
+  documentId: string;
+  slug: string;
 }
 
 export interface CategoriesGridProps extends Base<"blocks.categories-grid"> {
   title: string;
   description: string;
-  categories: {
-    id: string;
-    title: string;
-    description: string;
-    image: StrapiImage;
-  }[]
+  categories: CategoryProps[];
+}
+
+export interface ProductProps {
+  id: string;
+  name: string;
+  description: string;
+  onSale: boolean;
+  priceInCents: number;
+  itemQuantityType: string;
+  category: CategoryProps;
+  image: StrapiImage;
+  documentId: string;
+  slug: string;
+}
+export interface ProductsGridProps extends Base<"blocks.products-grid"> {
+  title: string;
+  description: string;
+  products: ProductProps[];
 }

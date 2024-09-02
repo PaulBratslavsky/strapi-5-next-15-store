@@ -63,6 +63,42 @@ export async function getHomePageData() {
               },
             },
           },
+          "blocks.products-grid": {
+            populate: {
+              products: {
+                populate: {
+                  image: {
+                    fields: ["url", "alternativeText"],
+                  },
+                  category: {
+                    fields: ["title", "slug", "documentId"],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  return fetchData(url.href);
+}
+
+export async function getProductData() {
+  const path = "/api/products";
+  const url = new URL(path, baseURL);
+
+  url.search = qs.stringify({
+    populate: {
+      products: {
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+          category: {
+            fields: ["title", "slug", "documentId"],
+          },
         },
       },
     },

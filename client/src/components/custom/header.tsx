@@ -1,9 +1,8 @@
-import { SearchIcon, ShoppingCartIcon } from "lucide-react";
+import { ShoppingCartIcon } from "lucide-react";
 import Link from "next/link";
 
 import { getGlobalData } from "@/data/loaders";
 
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ItemsDropdown } from "@/components/custom/items-dropdown";
 import { StrapiImage } from "@/components/custom/strapi-image";
@@ -14,7 +13,6 @@ async function loader() {
 }
 
 export async function Header() {
-
   const { data } = await loader();
   if (!data) throw new Error("No data found");
 
@@ -24,7 +22,10 @@ export async function Header() {
   return (
     <div className="sticky top-0 z-50 shadow-sm bg-white">
       <div className="flex items-center justify-between gap-8 px-4 py-4 container mx-auto">
-        <Link href={logoLink?.href || "/"} className="flex items-center gap-2 h-10">
+        <Link
+          href={logoLink?.href || "/"}
+          className="flex items-center gap-2 h-10"
+        >
           <StrapiImage
             src={logoImage}
             alt="logo"
@@ -35,18 +36,11 @@ export async function Header() {
           <h1 className="hidden md:block text-xl text-primary">Next Store</h1>
         </Link>
 
-        <div className="flex items-center justify-center gap-2 flex-1">
-          <div className="hidden md:flex items-center gap-2">
-            <ItemsDropdown label={foodCategories.label} items={foodCategories.categories} />
-          </div>
-          <div className="relative w-full max-w-sm hidden md:block ">
-            <Input
-              type="text"
-              placeholder="Search"
-              className="pl-10 rounded-full"
-            />
-            <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-          </div>
+        <div className="hidden md:flex items-center justify-center gap-2 flex-1">
+          <ItemsDropdown
+            label={foodCategories.label}
+            items={foodCategories.categories}
+          />
         </div>
 
         <div className="flex items-center gap-2">

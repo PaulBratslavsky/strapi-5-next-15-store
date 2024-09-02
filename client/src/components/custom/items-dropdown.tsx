@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LayoutGridIcon } from "lucide-react";
 import {
@@ -31,9 +32,10 @@ export function ItemsDropdown({
   label,
   items = [],
 }: Readonly<ItemDropdownProps>) {
-  
-  const handleClick = (documentId: string) => {
-    alert("clicked" + documentId);
+  const router = useRouter();
+
+  const handleClick = (slug: string) => {
+    router.push(`/categories/${slug}`);
   };
 
   return (
@@ -54,7 +56,7 @@ export function ItemsDropdown({
           {items.map((item, index) => (
             <DropdownMenuItem
               key={index}
-              onClick={() => handleClick(item.documentId)}
+              onClick={() => handleClick(item.slug)}
             >
               <div className="flex items-center gap-2">
                 <StrapiImage
@@ -65,7 +67,6 @@ export function ItemsDropdown({
                 />
                 <span>{item.title}</span>
               </div>
-              
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>

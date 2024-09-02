@@ -3,6 +3,8 @@ import { getHomePageData } from "@/data/loaders";
 
 import { Slider } from "@/components/custom/slider";
 import { CategoriesGrid } from "@/components/custom/categories-grid";
+import { ProductsGrid } from "@/components/custom/products-grid";
+
 function BlockRenderer(block: Block) {
   console.dir(block.__component, { depth: null });
   switch (block.__component) {
@@ -11,6 +13,9 @@ function BlockRenderer(block: Block) {
 
     case "blocks.categories-grid":
       return <CategoriesGrid key={block.id} {...block} />;
+
+    case "blocks.products-grid":
+      return <ProductsGrid key={block.id} {...block} />;
     default:
       return null;
   }

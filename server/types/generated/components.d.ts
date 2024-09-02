@@ -52,6 +52,18 @@ export interface BlocksSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksProductsGrid extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_products_grids';
+  info: {
+    displayName: 'Products Grid';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+  };
+}
+
 export interface BlocksCategoriesGrid extends Struct.ComponentSchema {
   collectionName: 'components_blocks_categories_grids';
   info: {
@@ -74,6 +86,7 @@ declare module '@strapi/strapi' {
       'elements.logo-link': ElementsLogoLink;
       'elements.categories': ElementsCategories;
       'blocks.slider': BlocksSlider;
+      'blocks.products-grid': BlocksProductsGrid;
       'blocks.categories-grid': BlocksCategoriesGrid;
     }
   }

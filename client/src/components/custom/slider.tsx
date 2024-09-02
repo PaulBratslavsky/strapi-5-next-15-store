@@ -9,7 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export function Slider({ slides }: SliderProps) {
+export function Slider({ slides }: Readonly<SliderProps>) {
   return (
     <div className="container mx-auto rounded-2xl shadow-md overflow-hidden my-12">
       <Carousel className="relative ">

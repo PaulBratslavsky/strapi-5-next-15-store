@@ -22,7 +22,8 @@
       "type": "dynamiczone",
       "components": [
         "blocks.slider",
-        "blocks.categories-grid"
+        "blocks.categories-grid",
+        "blocks.products-grid"
       ]
     }
   }
