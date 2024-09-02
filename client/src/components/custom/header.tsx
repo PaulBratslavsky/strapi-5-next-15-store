@@ -22,7 +22,7 @@ export async function Header() {
   const logoImage = logoLink?.logoImage?.url;
 
   return (
-    <div className="sticky top-0 z-50 shadow-sm">
+    <div className="sticky top-0 z-50 shadow-sm bg-white">
       <div className="flex items-center justify-between gap-8 px-4 py-4 container mx-auto">
         <Link href={logoLink?.href || "/"} className="flex items-center gap-2 h-10">
           <StrapiImage

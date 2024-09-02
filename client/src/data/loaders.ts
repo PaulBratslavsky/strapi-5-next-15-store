@@ -32,3 +32,30 @@ export async function getGlobalData() {
 
   return fetchData(url.href);
 }
+
+export async function getHomePageData() {
+  const path = "/api/home-page";
+  const url = new URL(path, baseURL);
+
+  url.search = qs.stringify({
+    populate: {
+      blocks: {
+        on: {
+          "blocks.slider": {
+            populate: {
+              slides: {
+                populate: {
+                  image: {
+                    fields: ["url", "alternativeText"],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  return fetchData(url.href);
+}
