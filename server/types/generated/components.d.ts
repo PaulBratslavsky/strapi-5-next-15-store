@@ -52,6 +52,21 @@ export interface BlocksSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksCategoriesGrid extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_categories_grids';
+  info: {
+    displayName: 'Categories Grid';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -59,6 +74,7 @@ declare module '@strapi/strapi' {
       'elements.logo-link': ElementsLogoLink;
       'elements.categories': ElementsCategories;
       'blocks.slider': BlocksSlider;
+      'blocks.categories-grid': BlocksCategoriesGrid;
     }
   }
 }

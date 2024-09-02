@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={poppins.className}>
         <Header />
         {children}
-        <a href="https://www.flaticon.com/free-icons/fruits" title="fruits icons">Fruits icons created by Freepik - Flaticon</a>
+        <footer className="bg-gray-100 p-4 text-center text-gray-500">
+          <a href="https://www.flaticon.com/free-icons/fruits" title="fruits icons">Fruits icons created by Freepik - Flaticon</a>
+        </footer>
       </body>
     </html>
   );

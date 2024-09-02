@@ -1,4 +1,4 @@
-type ComponentType = "blocks.slider";
+type ComponentType = "blocks.slider" | "blocks.categories-grid";
 
 interface Base<T extends ComponentType, D extends {} = {}> {
   __component: T;
@@ -21,12 +21,23 @@ export interface StrapiImage {
   name: string;
 }
 
-export type Block = SliderProps;
+export type Block = SliderProps | CategoriesGridProps;
 
 export interface SliderProps extends Base<"blocks.slider"> {
   title: string;
   description: string;
   slides: {
+    id: string;
+    title: string;
+    description: string;
+    image: StrapiImage;
+  }[]
+}
+
+export interface CategoriesGridProps extends Base<"blocks.categories-grid"> {
+  title: string;
+  description: string;
+  categories: {
     id: string;
     title: string;
     description: string;

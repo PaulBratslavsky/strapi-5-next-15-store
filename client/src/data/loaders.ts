@@ -52,6 +52,17 @@ export async function getHomePageData() {
               },
             },
           },
+          "blocks.categories-grid": {
+            populate: {
+              categories: {
+                populate: {
+                  image: {
+                    fields: ["url", "alternativeText"],
+                  },
+                },
+              },
+            },
+          },
         },
       },
     },

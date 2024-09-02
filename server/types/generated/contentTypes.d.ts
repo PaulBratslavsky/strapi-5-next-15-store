@@ -503,6 +503,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     singularName: 'home-page';
     pluralName: 'home-pages';
     displayName: 'Home Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -510,7 +511,9 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   attributes: {
     title: Schema.Attribute.String;
     description: Schema.Attribute.Text;
-    blocks: Schema.Attribute.DynamicZone<['blocks.slider']>;
+    blocks: Schema.Attribute.DynamicZone<
+      ['blocks.slider', 'blocks.categories-grid']
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
