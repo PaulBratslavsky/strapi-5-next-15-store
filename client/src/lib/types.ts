@@ -65,7 +65,7 @@ export interface ProductProps {
   slug: string;
 }
 export interface ProductsGridProps extends Base<"blocks.products-grid"> {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   products: ProductProps[];
 }

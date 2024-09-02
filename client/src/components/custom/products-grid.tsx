@@ -2,6 +2,7 @@ import type { ProductsGridProps, ProductProps } from "@/lib/types";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import ProductModal from "@/components/custom/product-modal";
 import { formatPrice } from "@/lib/utils";
+
 function ProductItem({ product }: { readonly product: ProductProps }) {
   return (
     <div
@@ -47,8 +48,8 @@ export function ProductsGrid({
   return (
     <div className="container mx-auto my-12">
       <div className="flex flex-col gap-2 items-center justify-center mb-12">
-        <h2 className="text-4xl font-bold">{title}</h2>
-        <p className="text-lg text-gray-600">{description}</p>
+        {title && <h2 className="text-4xl font-bold">{title}</h2>}
+        {description && <p className="text-lg text-gray-600">{description}</p>}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">

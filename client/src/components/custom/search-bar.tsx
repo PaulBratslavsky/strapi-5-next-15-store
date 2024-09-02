@@ -45,11 +45,11 @@ export function SearchBar() {
 
   return (
     <div className="w-full">
-      <div className="relative w-full max-w-sm hidden md:block ">
+      <div className="relative w-full">
         <Input
           type="text"
           placeholder="Search"
-          className="pl-10 rounded-full"
+          className="pl-10 rounded-full w-full"
           onChange={(e) => setTerm(e.target.value)}
           defaultValue={term}
         />

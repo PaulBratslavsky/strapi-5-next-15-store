@@ -18,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={`${poppins.className} flex flex-col min-h-screen`}>
         <Header />
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
         <footer className="bg-gray-100 p-4 text-center text-gray-500">
           <a href="https://www.flaticon.com/free-icons/fruits" title="fruits icons">Fruits icons created by Freepik - Flaticon</a>
         </footer>

@@ -47,7 +47,9 @@ export async function Header() {
           <ShoppingCartIcon className="w-6 h-6" />
           <span className="text-lg font-bold text-primary">0</span>
         </div>
-        <Button>Login</Button>
+        <Button asChild>
+          <Link href="/signin">Sign In</Link>
+        </Button>
       </div>
     </div>
   );

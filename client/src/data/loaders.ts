@@ -85,22 +85,30 @@ export async function getHomePageData() {
   return fetchData(url.href);
 }
 
-export async function getProductData() {
+export async function getProductData(category?: string, query?: string) {
   const path = "/api/products";
   const url = new URL(path, baseURL);
 
   url.search = qs.stringify({
     populate: {
-      products: {
-        populate: {
-          image: {
-            fields: ["url", "alternativeText"],
-          },
-          category: {
-            fields: ["title", "slug", "documentId"],
-          },
+      image: {
+        fields: ["url", "alternativeText"],
+      },
+      category: {
+        fields: ["title", "slug", "documentId"],
+      },
+    },
+    filters: {
+      category: {
+        slug: {
+          $eq: category,
         },
       },
+
+      $or: [
+        { name: { $containsi: query ?? "" } },
+        { description: { $containsi: query ?? "" } },
+      ],
     },
   });
 
