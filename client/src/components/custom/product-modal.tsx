@@ -14,7 +14,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { CartSummary } from "@/components/custom/cart-summary";
 
 export default function ProductModal({
   product,
@@ -23,10 +24,19 @@ export default function ProductModal({
 }) {
   const { name, description, image, priceInCents, onSale } = product;
   const [quantity, setQuantity] = useState(1);
+  const [subtotal, setSubtotal] = useState(priceInCents);
+
+  const handleQuantityChange = (newQuantity: number) => {
+    const validQuantity = Math.max(1, newQuantity);
+    setQuantity(validQuantity);
+    setSubtotal(validQuantity * priceInCents);
+  };
 
   const handleAddToCart = () => {
     // TODO: Implement add to cart functionality
-    console.log(`Added ${quantity} ${name}(s) to cart`);
+    console.log(
+      `Added ${quantity} ${name}(s) to cart. Subtotal: ${formatPrice(subtotal)}`
+    );
   };
 
   return (
@@ -59,27 +69,33 @@ export default function ProductModal({
               <p className="text-lg font-semibold">
                 {formatPrice(priceInCents)}
               </p>
-              <div className="flex items-center gap-2">
-                <Label htmlFor="quantity" className="text-sm">
-                  Quantity:
-                </Label>
-                <Input
-                  type="number"
-                  id="quantity"
-                  min="1"
-                  value={quantity}
-                  onChange={(e) =>
-                    setQuantity(Math.max(1, parseInt(e.target.value)))
-                  }
-                  className="w-20"
-                />
+              <div className="flex items-center justify-between gap-2">
+                <div>
+      
+                  <Input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    value={quantity}
+                    onChange={(e) =>
+                      handleQuantityChange(parseInt(e.target.value))
+                    }
+                    className="w-20"
+                  />
+                </div>
+                <span className="text-sm font-semibold">
+                  Total: ${formatPrice(subtotal)}
+                </span>
               </div>
+
               <Button onClick={handleAddToCart} className="w-full">
                 Add to Cart
               </Button>
             </div>
           </CardContent>
         </Card>
+
+        <CartSummary />
       </DialogContent>
     </Dialog>
   );

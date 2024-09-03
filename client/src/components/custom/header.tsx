@@ -1,4 +1,3 @@
-import { ShoppingCartIcon } from "lucide-react";
 import Link from "next/link";
 
 import { getGlobalData } from "@/data/loaders";
@@ -6,6 +5,7 @@ import { getGlobalData } from "@/data/loaders";
 import { Button } from "@/components/ui/button";
 import { ItemsDropdown } from "@/components/custom/items-dropdown";
 import { StrapiImage } from "@/components/custom/strapi-image";
+import { CartModal } from "@/components/custom/cart-modal";
 
 async function loader() {
   const data = await getGlobalData();
@@ -43,10 +43,12 @@ export async function Header() {
           />
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <ShoppingCartIcon className="w-6 h-6" />
           <span className="text-lg font-bold text-primary">0</span>
-        </div>
+        </div> */}
+
+        <CartModal />
         <Button asChild>
           <Link href="/signin">Sign In</Link>
         </Button>
