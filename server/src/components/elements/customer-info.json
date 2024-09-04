@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_elements_customer_infos",
+  "info": {
+    "displayName": "Customer Info"
+  },
+  "options": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "streetAddress": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "integer"
+    },
+    "phone": {
+      "type": "string"
+    }
+  }
+}

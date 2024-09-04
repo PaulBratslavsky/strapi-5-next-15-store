@@ -7,7 +7,7 @@ import { LogoutButton } from "@/components/custom/logout-button";
 import { Button } from "@/components/ui/button";
 import { ItemsDropdown } from "@/components/custom/items-dropdown";
 import { StrapiImage } from "@/components/custom/strapi-image";
-import { CartModal, CartButton, CartSummary } from "@/components/custom/cart";
+import { CartModal, CartButton, CartItems } from "@/components/custom/cart";
 
 async function loader() {
   const data = await getGlobalData();
@@ -51,7 +51,11 @@ export async function Header() {
             <div className="flex items-center gap-2">
               <CartModal>
                 <CartButton />
-                <CartSummary />
+                <CartItems>
+                  <Button asChild>
+                    <a href="/order">Start Checkout</a>
+                  </Button>
+                </CartItems>
               </CartModal>
             </div>
 

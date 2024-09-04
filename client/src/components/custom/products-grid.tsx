@@ -1,9 +1,10 @@
 import type { ProductsGridProps, ProductProps } from "@/lib/types";
 import { StrapiImage } from "@/components/custom/strapi-image";
-import ProductModal from "@/components/custom/product-modal";
+import { ProductModal } from "@/components/custom/product-modal";
 import { formatPrice } from "@/lib/utils";
 import { AddItemToCartForm } from "@/components/forms/add-item-to-cart-form";
-import { CartSummary } from "@/components/custom/cart";
+import { CartItems } from "./cart";
+import { Button } from "@/components/ui/button";
 
 function ProductItem({
   product,
@@ -68,7 +69,11 @@ export function ProductsGrid({
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.map((product) => (
           <ProductItem key={product.id} product={product}>
-            <CartSummary />
+            <CartItems>
+              <Button asChild>
+                <a href="/order">Start Checkout</a>
+              </Button>
+            </CartItems>
           </ProductItem>
         ))}
       </div>

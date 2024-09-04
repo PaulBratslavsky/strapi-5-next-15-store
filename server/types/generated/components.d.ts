@@ -1,5 +1,60 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface ElementsSlide extends Struct.ComponentSchema {
+  collectionName: 'components_elements_slides';
+  info: {
+    displayName: 'Slide';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    href: Schema.Attribute.String;
+  };
+}
+
+export interface ElementsLogoLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_logo_links';
+  info: {
+    displayName: 'LogoLink';
+  };
+  attributes: {
+    logoText: Schema.Attribute.String;
+    logoImage: Schema.Attribute.Media<'images'>;
+    href: Schema.Attribute.String;
+  };
+}
+
+export interface ElementsCustomerInfo extends Struct.ComponentSchema {
+  collectionName: 'components_elements_customer_infos';
+  info: {
+    displayName: 'Customer Info';
+  };
+  attributes: {
+    firstName: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
+    streetAddress: Schema.Attribute.String;
+    state: Schema.Attribute.String;
+    zip: Schema.Attribute.Integer;
+    phone: Schema.Attribute.String;
+  };
+}
+
+export interface ElementsCategories extends Struct.ComponentSchema {
+  collectionName: 'components_elements_categories';
+  info: {
+    displayName: 'Categories';
+  };
+  attributes: {
+    label: Schema.Attribute.String;
+    categories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
+  };
+}
+
 export interface BlocksSlider extends Struct.ComponentSchema {
   collectionName: 'components_blocks_sliders';
   info: {
@@ -39,55 +94,16 @@ export interface BlocksCategoriesGrid extends Struct.ComponentSchema {
   };
 }
 
-export interface ElementsSlide extends Struct.ComponentSchema {
-  collectionName: 'components_elements_slides';
-  info: {
-    displayName: 'Slide';
-    description: '';
-  };
-  attributes: {
-    title: Schema.Attribute.String;
-    description: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
-    href: Schema.Attribute.String;
-  };
-}
-
-export interface ElementsLogoLink extends Struct.ComponentSchema {
-  collectionName: 'components_elements_logo_links';
-  info: {
-    displayName: 'LogoLink';
-  };
-  attributes: {
-    logoText: Schema.Attribute.String;
-    logoImage: Schema.Attribute.Media<'images'>;
-    href: Schema.Attribute.String;
-  };
-}
-
-export interface ElementsCategories extends Struct.ComponentSchema {
-  collectionName: 'components_elements_categories';
-  info: {
-    displayName: 'Categories';
-  };
-  attributes: {
-    label: Schema.Attribute.String;
-    categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    >;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'elements.slide': ElementsSlide;
+      'elements.logo-link': ElementsLogoLink;
+      'elements.customer-info': ElementsCustomerInfo;
+      'elements.categories': ElementsCategories;
       'blocks.slider': BlocksSlider;
       'blocks.products-grid': BlocksProductsGrid;
       'blocks.categories-grid': BlocksCategoriesGrid;
-      'elements.slide': ElementsSlide;
-      'elements.logo-link': ElementsLogoLink;
-      'elements.categories': ElementsCategories;
     }
   }
 }

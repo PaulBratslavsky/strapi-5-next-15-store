@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 
 
-export default function ProductModal({ children }: { readonly children: React.ReactNode }) {
+export function ProductModal({ children }: { readonly children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>

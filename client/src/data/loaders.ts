@@ -137,6 +137,11 @@ export async function getCartItems() {
     populate: {
       item: {
         fields: ["name", "priceInCents"],
+        populate: {
+          image: {
+            fields: ["url", "alternativeText"],
+          },
+        },
       },
     },
   });

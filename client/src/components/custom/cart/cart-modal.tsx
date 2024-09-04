@@ -10,12 +10,11 @@ import {
 } from "@/components/ui/dialog";
 
 interface CartModalProps {
-  children: [React.ReactNode, React.ReactNode];
+  children: [React.ReactNode, React.ReactNode ];
 } 
 
 export function CartModal({ children }: CartModalProps) {
-  const [triggerComponent, contentComponent] = React.Children.toArray(children);  
-  console.log(triggerComponent, contentComponent);
+  const [triggerComponent, contentComponent ] = React.Children.toArray(children);  
   return (
     <Dialog>
       <DialogTrigger asChild>

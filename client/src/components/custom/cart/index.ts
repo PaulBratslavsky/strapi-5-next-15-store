@@ -1,9 +1,5 @@
 import { CartButton } from "./cart-button";
-import { CartSummary } from "./cart-summary";
 import { CartModal } from "./cart-modal";
+import { CartItems } from "./cart-items";
 
-export {
-  CartButton,
-  CartSummary,
-  CartModal,
-};
+export { CartButton, CartModal, CartItems };
