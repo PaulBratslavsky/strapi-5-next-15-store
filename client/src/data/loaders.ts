@@ -86,7 +86,8 @@ export async function getHomePageData() {
   return fetchData(url.href, { method: "GET" });
 }
 
-export async function getProductData(category?: string, query?: string) {
+export async function getProductData(category?: string | null, query?: string) {
+
   const path = "/api/products";
   const url = new URL(path, baseURL);
 
@@ -100,11 +101,7 @@ export async function getProductData(category?: string, query?: string) {
       },
     },
     filters: {
-      category: {
-        slug: {
-          $eq: category,
-        },
-      },
+      ...(category && { category: { slug: { $containsi: category } } }),
 
       $or: [
         { name: { $containsi: query ?? "" } },
@@ -136,7 +133,7 @@ export async function getCartItems() {
     },
     populate: {
       item: {
-        fields: ["name", "priceInCents"],
+        
         populate: {
           image: {
             fields: ["url", "alternativeText"],

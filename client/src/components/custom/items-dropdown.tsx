@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LayoutGridIcon } from "lucide-react";
+import Link from "next/link";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -69,6 +71,9 @@ export function ItemsDropdown({
               </div>
             </DropdownMenuItem>
           ))}
+          <DropdownMenuItem onClick={() => handleClick("all")}>
+            <span>All</span>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

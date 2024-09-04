@@ -12,7 +12,7 @@ interface PageProps {
   };
 }
 
-async function loader(category: string, query: string) {
+async function loader(category: string | null, query: string) {
   const data = await getProductData(category, query);
   return { ...data };
 }
@@ -23,7 +23,7 @@ export default async function CategoryRoute({
 }: Readonly<PageProps>) {
 
   const query = searchParams.query ?? "";
-  const category = params.category;
+  const category = params.category === "all" ? null : params.category;
 
   const { data } = await loader(category, query);
   if (!data) return <div>No data found</div>;
