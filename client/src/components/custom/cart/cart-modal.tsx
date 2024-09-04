@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingCartIcon } from "lucide-react";
+import React from "react";
 import {
   Dialog,
   DialogContent,
@@ -9,22 +9,23 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import { CartSummary } from "@/components/custom/cart-summary";
+interface CartModalProps {
+  children: [React.ReactNode, React.ReactNode];
+} 
 
-export function CartModal() {
+export function CartModal({ children }: CartModalProps) {
+  const [triggerComponent, contentComponent] = React.Children.toArray(children);  
+  console.log(triggerComponent, contentComponent);
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex items-center gap-2 cursor-pointer">
-          <ShoppingCartIcon className="w-6 h-6" />
-          <span className="text-lg font-bold text-primary">0</span>
-        </div>
+        {triggerComponent}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[700px]">
         <DialogHeader>
           <DialogTitle>Your Cart</DialogTitle>
         </DialogHeader>
-        <CartSummary />
+        {contentComponent}
       </DialogContent>
     </Dialog>
   );

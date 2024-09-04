@@ -1,19 +1,22 @@
 import Link from "next/link";
 
 import { getGlobalData } from "@/data/loaders";
+import { getUserMeLoader } from "@/lib/auth/services";
+import { LogoutButton } from "@/components/custom/logout-button";
 
 import { Button } from "@/components/ui/button";
 import { ItemsDropdown } from "@/components/custom/items-dropdown";
 import { StrapiImage } from "@/components/custom/strapi-image";
-import { CartModal } from "@/components/custom/cart-modal";
+import { CartModal, CartButton, CartSummary } from "@/components/custom/cart";
 
 async function loader() {
   const data = await getGlobalData();
-  return { ...data };
+  const user = await getUserMeLoader();
+  return { ...data, user };
 }
 
 export async function Header() {
-  const { data } = await loader();
+  const { data, user } = await loader();
   if (!data) throw new Error("No data found");
 
   const { logoLink, foodCategories } = data;
@@ -43,15 +46,22 @@ export async function Header() {
           />
         </div>
 
-        {/* <div className="flex items-center gap-2">
-          <ShoppingCartIcon className="w-6 h-6" />
-          <span className="text-lg font-bold text-primary">0</span>
-        </div> */}
+        {user.ok ? (
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
+              <CartModal>
+                <CartButton />
+                <CartSummary />
+              </CartModal>
+            </div>
 
-        <CartModal />
-        <Button asChild>
-          <Link href="/signin">Sign In</Link>
-        </Button>
+            <LogoutButton />
+          </div>
+        ) : (
+          <Button asChild>
+            <Link href="/signin">Sign In</Link>
+          </Button>
+        )}
       </div>
     </div>
   );

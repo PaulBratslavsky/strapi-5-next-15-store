@@ -2,8 +2,18 @@ import type { ProductsGridProps, ProductProps } from "@/lib/types";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import ProductModal from "@/components/custom/product-modal";
 import { formatPrice } from "@/lib/utils";
+import { AddItemToCartForm } from "@/components/forms/add-item-to-cart-form";
+import { CartSummary } from "@/components/custom/cart";
 
-function ProductItem({ product }: { readonly product: ProductProps }) {
+function ProductItem({
+  product,
+  children,
+}: {
+  readonly product: ProductProps;
+  readonly children: React.ReactNode;
+}) {
+  "use client";
+
   return (
     <div
       key={product.id}
@@ -33,7 +43,10 @@ function ProductItem({ product }: { readonly product: ProductProps }) {
           <span className="text-lg font-bold">
             ${formatPrice(product.priceInCents)}
           </span>
-          <ProductModal product={product} />
+          <ProductModal>
+            <AddItemToCartForm product={product} />
+            {children}
+          </ProductModal>
         </div>
       </div>
     </div>
@@ -52,9 +65,11 @@ export function ProductsGrid({
         {description && <p className="text-lg text-gray-600">{description}</p>}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {products.map((product) => (
-          <ProductItem key={product.id} product={product} />
+          <ProductItem key={product.id} product={product}>
+            <CartSummary />
+          </ProductItem>
         ))}
       </div>
     </div>
