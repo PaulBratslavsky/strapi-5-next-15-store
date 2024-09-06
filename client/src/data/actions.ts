@@ -208,6 +208,6 @@ export async function createOrderAction(prevState: any, formData: FormData) {
     ...prevState,
     strapiErrors: null,
     zodErrors: null,
-    message: "Order submitted successfully",
+    message: "Order submitted",
   };
 }

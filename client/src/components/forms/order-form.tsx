@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SubmitButton } from "@/components/custom/submit-button";
@@ -8,6 +9,10 @@ import { ZodErrors } from "@/components/custom/zod-errors";
 import { createOrderAction } from "@/data/actions";
 import { useFormState } from "react-dom";
 import { StrapiErrors } from "@/components/custom/strapi-errors";
+import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
+
+
 
 const INITIAL_STATE = {
   zodErrors: null,
@@ -24,14 +29,26 @@ const INITIAL_STATE = {
 };
 
 export function OrderForm() {
+  const { toast } = useToast(); 
+  const router = useRouter();
+
   const [formState, formAction] = useFormState(
     createOrderAction,
     INITIAL_STATE
   );
 
-  console.log(formState);
+  const { firstName, lastName, streetAddress, state, zip, phone } = formState?.data || {};
 
-  const { firstName, lastName, streetAddress, state, zip, phone } = formState?.data;
+
+  useEffect(() => {
+    if (formState?.message === "Order submitted") {
+      toast({
+        title: "Order submitted",
+        description: formState.message,
+      });
+      router.push("/");
+    }
+  }, [formState?.message, toast]);
 
   return (
     <Card>
