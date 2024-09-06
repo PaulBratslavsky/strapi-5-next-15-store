@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LayoutGridIcon } from "lucide-react";
-import Link from "next/link";
 
 import {
   DropdownMenu,

@@ -531,6 +531,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     singularName: 'order';
     pluralName: 'orders';
     displayName: 'Order';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -543,7 +544,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     customerInfo: Schema.Attribute.Component<'elements.customer-info', false>;
     dateReceived: Schema.Attribute.Date;
     orderStatus: Schema.Attribute.Enumeration<
-      ['RECIEVED', 'PROCESSING', 'FULFILLED']
+      ['RECEIVED', 'PROCESSING', 'FULFILLED']
     >;
     orderItems: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     createdAt: Schema.Attribute.DateTime;

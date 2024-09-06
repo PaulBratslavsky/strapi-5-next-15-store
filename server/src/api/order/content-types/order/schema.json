@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,7 +29,7 @@
     "orderStatus": {
       "type": "enumeration",
       "enum": [
-        "RECIEVED",
+        "RECEIVED",
         "PROCESSING",
         "FULFILLED"
       ]

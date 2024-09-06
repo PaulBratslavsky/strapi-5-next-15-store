@@ -1,4 +1,4 @@
-import type { Block } from "@/lib/types";
+import type { Block } from "@/lib/types"; 
 import { getHomePageData } from "@/data/loaders";
 
 import { Slider } from "@/components/custom/slider";

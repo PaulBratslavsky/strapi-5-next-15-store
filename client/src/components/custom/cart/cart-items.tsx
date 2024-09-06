@@ -41,7 +41,7 @@ interface CartItem {
 
 async function loader() {
   const cartItems = await getCartItems();
-  return cartItems?.data;
+  return cartItems?.data || [];
 }
 
 export async function CartItems({ children }: { children?: React.ReactNode }) {

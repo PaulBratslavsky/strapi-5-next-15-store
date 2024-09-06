@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import { formatPrice } from "@/lib/utils";
 import { SubmitButton } from "@/components/custom/submit-button";
+
 import { ProductProps } from "@/lib/types";
 import { addItemToCartAction } from "@/data/actions";
 

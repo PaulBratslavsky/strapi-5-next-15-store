@@ -1,6 +1,6 @@
 "use server";
 import qs from "qs";
-import { fetchData } from "@/lib/fetchData";
+import { fetchAPI } from "@/lib/fetchAPI";
 import { getAuthToken, getUserMeLoader } from "@/lib/auth/services";
 
 const baseURL = process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
@@ -32,7 +32,7 @@ export async function getGlobalData() {
     },
   });
 
-  return fetchData(url.href, { method: "GET" });
+  return fetchAPI(url.href, { method: "GET" });
 }
 
 export async function getHomePageData() {
@@ -83,7 +83,8 @@ export async function getHomePageData() {
       },
     },
   });
-  return fetchData(url.href, { method: "GET" });
+  
+  return fetchAPI(url.href, { method: "GET" });
 }
 
 export async function getProductData(category?: string | null, query?: string) {
@@ -110,7 +111,7 @@ export async function getProductData(category?: string | null, query?: string) {
     },
   });
 
-  return fetchData(url.href, { method: "GET" });
+  return fetchAPI(url.href, { method: "GET" });
 }
 
 export async function getCartItems() {
@@ -143,7 +144,7 @@ export async function getCartItems() {
     },
   });
 
-  return fetchData(url.href, {
+  return fetchAPI(url.href, {
     method: "GET",
     authToken: token,
     next: { tags: ["cart-items"] },
